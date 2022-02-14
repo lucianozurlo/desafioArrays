@@ -43,8 +43,6 @@ function noSeEntiende() {
     alert("No entiendo lo que decís. Lo tomo como un NO.");
 }
 
-
-
 //Función para sumar el array para el carbón
 function comprarCarbon() {
     asado.push(new CorteAsado("Carbón", 4, 20));
@@ -68,13 +66,6 @@ function checkCarbon() {
 }
 checkCarbon(); 
 
-//Borrar del array los cortes que pesan 0
-for (const corte of asado) {
-    const eliminarArrayVacio = 0;
-    const index = asado.findIndex(corte => corte.peso === eliminarArrayVacio);
-    asado.splice(index, 1);
-}
-
 //Función que chequea si tenés descuento
 let descuento = 0;
 function checkDescuento() {
@@ -91,13 +82,16 @@ function checkDescuento() {
     }
 }
 
-
 //Función que muestra resultado
 function lista() {
     if (totalPrecioAsado !== 0) {
         document.write("<h2>¡Hoy hacemos asado!</h2><p>Lista para la carnicería:</p><ul>");
         
-        for (const corte of asado) {
+        //Creo un nuevo filtrando los array que no tienen un valor 0
+        var asadoOK = asado.filter((item) => item.peso !== 0);
+        console.log(asadoOK);
+
+        for (const corte of asadoOK) {
             //Mantengo en consola para chequear los valores
             console.log(corte.nombre);
             console.log(corte.peso);
